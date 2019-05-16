@@ -78,7 +78,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         //🙅‍♀️ 60秒ごとに繰り返し通知
         //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
         //毎朝6時に送信する
-        let date = DateComponents(hour:19, minute:17, second:33)
+        let date = DateComponents(hour:21, minute:1, second:10)
         let trigger1 = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
         
         
@@ -94,6 +94,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     // アクションを選択した際に呼び出されるメソッド
     @available(iOS 10.0, *)
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: () -> Swift.Void) {
@@ -145,16 +146,12 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             // 通知登録
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             print("test1")
-            @available(iOS 10.0, *)
-            func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                        didReceive response: UNNotificationResponse,
-                                        withCompletionHandler completionHandler: () -> Swift.Void) {
-                
+            
+            
                 // 選択されたアクションごとに処理を分岐
                 
                 print("test2")
                 switch response.actionIdentifier {
-                    
                 case ActionIdentifier.actionOne.rawValue:
                     print("test3")
                     // 具体的な処理をここに記入
@@ -167,7 +164,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
                     two = two + 1.0
                     label2.text = String(two)
                     
-                case ActionIdentifier.actionThree.rawValue:1
+                case ActionIdentifier.actionThree.rawValue:
                     three = three + 1.0
                     label3.text = String(three)
                     
@@ -176,7 +173,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
                 }
                 
                 completionHandler()
-            }
+            
             
             
        

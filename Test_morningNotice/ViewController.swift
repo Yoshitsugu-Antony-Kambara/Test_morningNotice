@@ -54,41 +54,41 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         
         // アクション設定
         let actionMorning = UNNotificationAction(identifier: ActionIdentifier1.actionMorning.rawValue,
-                                             title: "朝",
+                                             title: "起きた！",
                                              options: [.foreground])
     
         
-        let category = UNNotificationCategory(identifier: "category_select",
+        let category1 = UNNotificationCategory(identifier: "category_morning",
                                               actions: [actionMorning],
                                               intentIdentifiers: [],
                                               options: [])
         
-        UNUserNotificationCenter.current().setNotificationCategories([category])
+        UNUserNotificationCenter.current().setNotificationCategories([category1])
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
         
         
-        let content = UNMutableNotificationContent()
-        content.title = "起きましたか？"
-        content.body = "起きたらタップしてください！"
-        content.sound = UNNotificationSound.default
+        let content1 = UNMutableNotificationContent()
+        content1.title = "起きましたか？"
+        content1.body = "起きたらタップしてください！"
+        content1.sound = UNNotificationSound.default
         
         // categoryIdentifierを設定
-        content.categoryIdentifier = "category_select"
+        content1.categoryIdentifier = "category_morning"
         
         //🙅‍♀️ 60秒ごとに繰り返し通知
         //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
         //毎朝6時に送信する
-        let date = DateComponents(hour:16, minute:41)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+        let date = DateComponents(hour:19, minute:14, second:33)
+        let trigger1 = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
         
         
         
-        let request = UNNotificationRequest(identifier: "notification",
-                                            content: content,
-                                            trigger: trigger)
+        let request1 = UNNotificationRequest(identifier: "notification1",
+                                            content: content1,
+                                            trigger: trigger1)
         
         // 通知登録
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        UNUserNotificationCenter.current().add(request1, withCompletionHandler: nil)
         
     }
     
@@ -99,7 +99,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: () -> Swift.Void) {
         
         
-        // 選択されたアクションごとに処理を分岐
+        // 「おきた！」がタップされたあと、、、
         switch response.actionIdentifier {
             
         case ActionIdentifier1.actionMorning.rawValue:
@@ -151,10 +151,12 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
                                         withCompletionHandler completionHandler: () -> Swift.Void) {
                 
                 // 選択されたアクションごとに処理を分岐
+                
                 print("done")
                 switch response.actionIdentifier {
                     
                 case ActionIdentifier.actionOne.rawValue:
+                    print("test")
                     // 具体的な処理をここに記入
                     // 変数oneをカウントアップしてラベルに表示
                     one = one + 1.0
